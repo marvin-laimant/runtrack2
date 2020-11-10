@@ -1,25 +1,27 @@
 <?php
-
-session_start();
-
-$_SESSION['nbvisites'];
-
-if (isset($_SESSION['nbvisites'])) {
-    
-    if (isset($_POST['reset'])) { 
-    $_SESSION['nbvisites']=1;
-
-    }
-
-    else {
-
-        $_SESSION['nbvisites']++;  
-    }
-}
-    echo $_SESSION['nbvisites'], '<br /> Nombre de fois que la page est visites';
-
+	session_start();
+	
+	$_SESSION['id'] = 0;
+	$nb_visites = $_SESSION['id'];
+	
+	foreach($_SESSION as $key => $value){
+		$nb_visites++;
+	}
+	
+	if(isset($_POST['reset'])){
+		session_destroy(); 
+		$nb_visites = 0;
+		echo $nb_visites;
+	}
+	else{echo $nb_visites;}
 ?>
 
-<form action="index.php" method="post">
-<input type="submit" name="reset" value="reset">
-</form>
+<html>
+	<head>
+	</head>
+	<body>
+		<form method="post">
+				<input type="submit" name="reset" value="reset"/>
+		</form>
+	</body>
+</html>

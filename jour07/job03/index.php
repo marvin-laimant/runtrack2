@@ -1,25 +1,25 @@
 <?php
-
-session_start();
-
-if (isset($_POST['prenom'])) {
-    ($_SESSION['name'] .= $_POST['prenom']);
-    echo $_POST['prenom'];
-}
-
-else $_SESSION['name'] .= $_POST['prenom'];
-
-if (isset($_SESSION['name'])) {
-
-}
-
-
+	session_start();
+	
+	if(isset($_POST['prenom'])){
+		$_SESSION['prenom'] = $_POST['prenom'];
+		echo $_POST['prenom'];
+	}
+	
+	if(isset($_POST['reset'])){
+		unset($_SESSION['prenom']);
+	}
+	
 ?>
 
-<form action="index.php" method="post">
-Prénom : <input type="text" name="prenom" placeholder="Entrez votre prenom">
-<br />
-<input type="submit" value="submit">
-<input type="submit" name="reset" value="reset">
-
-</form>
+<html>
+	<head>
+	</head>
+	<body>
+		<form method="post">
+				<input type="text" name="prenom"/>
+				<input type="submit" name="add" value="Ajouter"/>
+				<input type="submit" name="reset" value="Reset"/>
+		</form>
+	</body>
+</html>

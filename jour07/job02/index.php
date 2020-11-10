@@ -1,21 +1,24 @@
 <?php
-
-if (isset($_GET['reset'])) {
-    setcookie("nbvisites", 0);
-    header("location: index.php");
-
-} elseif (!isset($_COOKIE['nbvisites']) || $_COOKIE['nbvisites'] == 0) {
-    setcookie("nbvisites", 1);
-
-} else {
-
-    setcookie("nbvisites", $_COOKIE["nbvisites"] + 1);
-}
-
-    echo $_COOKIE["nbvisites"];
-
+	$_COOKIE['nb'] = 0;
+	$nbvisites = $_COOKIE['nb'];
+	
+	foreach($_COOKIE as $key => $value){
+		$nbvisites++;
+	}
+	
+	if(isset($_POST['reset'])){
+		$nbvisites = 0;
+		echo $nbvisites.'<br>';
+	}
+	else{echo $nbvisites.'<br>';}
 ?>
 
-<form action="index.php" method="get">
-<input type="submit" name="reset" value="reset">
-</form>
+<html>
+	<head>
+	</head>
+	<body>
+		<form method="post">
+				<input type="submit" name="reset" value="reset"/>
+		</form>
+	</body>
+</html>
